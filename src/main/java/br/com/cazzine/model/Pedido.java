@@ -26,15 +26,29 @@ public class Pedido {
         switch (this.status){
             case PENDENTE:
                 this.status = StatusPedido.EM_SEPARACAO;
+                break;
             case EM_SEPARACAO:
                 this.status = StatusPedido.EXPEDIDO;
+                break;
+            case EXPEDIDO:
+                this.status = StatusPedido.ENTREGUE;
+                break;
         }
     }
 
     public void exibirNotaFiscal(){
-        for (Produto prod : itens){
-            System.out.printf("Codigo do Pedido: %d | Status Atual: %s | Valor Total: R$%.2f", this.codigo, this.status, prod.calcularPrecoVenda());
+        double total = 0.0;
+
+        System.out.println("--- Nota Fiscal (Pedido " + this.codigo + ") ---");
+        System.out.println("Status: " + this.status);
+
+        for (Produto prod : itens) {
+            total += prod.calcularPrecoVenda();
+            System.out.println("- " + prod.getNome() + ": R$ " + prod.calcularPrecoVenda());
         }
+
+        System.out.printf("Valor Total do Pedido: R$ %.2f %n", total);
+        System.out.println("----------------------------------");
 
     }
 }
