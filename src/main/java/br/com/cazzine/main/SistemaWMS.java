@@ -17,9 +17,9 @@ public class SistemaWMS {
         Pedido pedido1001 = new Pedido(1001);
 
         pedido1001.adicionarProduto(p1);
-        pedido1001.avancarStatus();
-        pedido1001.avancarStatus();
         pedido1001.adicionarProduto(p2);
+        pedido1001.avancarStatus();
+        pedido1001.avancarStatus();
 
         pedido1001.exibirNotaFiscal();
 
@@ -29,7 +29,7 @@ public class SistemaWMS {
         auditoria.add(p1);
 
         for (Tributavel tr: auditoria){
-            System.out.printf("Imposto: R$%.2f", tr.calcularImposto());
+            System.out.printf("Imposto: R$%.2f %n", tr.calcularImposto());
         }
 
 
