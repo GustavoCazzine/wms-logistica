@@ -18,6 +18,6 @@ public class Eletronico extends Produto implements Tributavel {
     //Metodo interface
     @Override
     public double calcularImposto() {
-        return this.calcularPrecoVenda() * 0.20; //Retorna o preço com 20% de imposto sobre o preço de custo.
+        return this.calcularPrecoVenda() * 0.20; //Retorna o preço com 20% de imposto sobre o preço de venda.
     }
 }
