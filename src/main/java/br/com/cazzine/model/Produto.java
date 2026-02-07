@@ -1,6 +1,6 @@
 package br.com.cazzine.model;
 
-abstract class Produto {
+public abstract class Produto {
     //Atributos
     protected String nome;
     protected double precoCusto;
@@ -31,11 +31,9 @@ abstract class Produto {
     //toString
     @Override
     public String toString() {
-        return "Produto: " +
-                "Nome: '" + nome + '\'' +
-                " | Preço de custo: R$=" + precoCusto;
+        return "Produto: " + nome + " | Custo: R$ " + precoCusto;
     }
 
     //Metodos
-    public void calcularPrecoVenda(){}
+    public abstract double calcularPrecoVenda();
 }
