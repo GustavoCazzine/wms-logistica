@@ -1,6 +1,7 @@
 package br.com.cazzine.model;
 
 import br.com.cazzine.enums.StatusPedido;
+import br.com.cazzine.exceptions.PedidoFechadoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,10 @@ public class Pedido {
 
     //Metodos
     public boolean adicionarProduto(Produto produto){
+        if(this.status != StatusPedido.PENDENTE){
+            throw new PedidoFechadoException("Não é possível adicionar produtos. O pedido está " + this.status);
+        }
+
         return itens.add(produto);
     }
 

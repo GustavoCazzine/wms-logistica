@@ -1,5 +1,6 @@
 package br.com.cazzine.main;
 
+import br.com.cazzine.exceptions.PedidoFechadoException;
 import br.com.cazzine.interfaces.Tributavel;
 import br.com.cazzine.model.Alimento;
 import br.com.cazzine.model.Eletronico;
@@ -16,12 +17,14 @@ public class SistemaWMS {
 
         Pedido pedido1001 = new Pedido(1001);
 
-        pedido1001.adicionarProduto(p1);
-        pedido1001.adicionarProduto(p2);
-        pedido1001.avancarStatus();
-        pedido1001.avancarStatus();
+        try{
+            pedido1001.avancarStatus();
+            pedido1001.adicionarProduto(p1);
+            System.out.println("Produto adicionado com sucesso!");
+        } catch (PedidoFechadoException e){
+            System.err.println("Erro: " + e.getMessage());
+        }
 
-        pedido1001.exibirNotaFiscal();
 
 
         List<Tributavel> auditoria = new ArrayList<>();
