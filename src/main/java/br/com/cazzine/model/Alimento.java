@@ -1,12 +1,18 @@
 package br.com.cazzine.model;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Alimento extends Produto{
     //Atributos
-    private String dataValidade;
+    private LocalDate dataValidade;
 
     //Construtor
-    public Alimento(String nome, double precoCusto, String dataValidade) {
+    public Alimento(String nome, double precoCusto, LocalDate dataValidade) {
         super(nome, precoCusto);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyy");
         this.dataValidade = dataValidade;
     }
 
@@ -18,6 +24,7 @@ public class Alimento extends Produto{
 
     @Override
     public String toString() {
-        return super.toString() + "| Data de Validade: " + dataValidade;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return super.toString() + "| Data de Validade: " + dataValidade.format(formatter);
     }
 }

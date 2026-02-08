@@ -3,7 +3,10 @@ package br.com.cazzine.model;
 import br.com.cazzine.enums.StatusPedido;
 import br.com.cazzine.exceptions.PedidoFechadoException;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Pedido {
@@ -11,11 +14,13 @@ public class Pedido {
     private int codigo;
     private StatusPedido status;
     private List<Produto> itens = new ArrayList<>();
+    private LocalDateTime dataCriacao;
 
     //Construtor
     public Pedido(int codigo) {
         this.codigo = codigo;
         this.status = StatusPedido.PENDENTE;
+        this.dataCriacao = LocalDateTime.now();
     }
 
     //Metodos
@@ -43,9 +48,11 @@ public class Pedido {
 
     public void exibirNotaFiscal(){
         double total = 0.0;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.println("--- Nota Fiscal (Pedido " + this.codigo + ") ---");
         System.out.println("Status: " + this.status);
+        System.out.println("Data: " + this.dataCriacao.format(formatter));
 
         for (Produto prod : itens) {
             total += prod.calcularPrecoVenda();
