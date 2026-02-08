@@ -26,20 +26,11 @@ public class SistemaWMS {
             System.err.println("Erro: " + e.getMessage());
         }
 
+        pedido1001.avancarStatus();
+
         pedido1001.exibirNotaFiscal();
 
         System.out.println(p2.toString());
-
-
-
-        List<Tributavel> auditoria = new ArrayList<>();
-
-        auditoria.add(p1);
-
-        for (Tributavel tr: auditoria){
-            System.out.printf("Imposto: R$%.2f %n", tr.calcularImposto());
-        }
-
 
     }
 

@@ -6,7 +6,6 @@ import br.com.cazzine.exceptions.PedidoFechadoException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Pedido {
@@ -33,6 +32,13 @@ public class Pedido {
     }
 
     public void avancarStatus(){
+
+        try{
+            Thread.sleep(3000);
+        } catch (InterruptedException e){
+            System.err.println("Deu erro na espera:" + e.getMessage());
+        }
+
         switch (this.status){
             case PENDENTE:
                 this.status = StatusPedido.EM_SEPARACAO;
@@ -44,6 +50,8 @@ public class Pedido {
                 this.status = StatusPedido.ENTREGUE;
                 break;
         }
+
+        System.out.println("✅ Status alterado para: " + this.status);
     }
 
     public void exibirNotaFiscal(){

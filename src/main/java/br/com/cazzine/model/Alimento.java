@@ -1,8 +1,6 @@
 package br.com.cazzine.model;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Alimento extends Produto{
@@ -12,7 +10,6 @@ public class Alimento extends Produto{
     //Construtor
     public Alimento(String nome, double precoCusto, LocalDate dataValidade) {
         super(nome, precoCusto);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyy");
         this.dataValidade = dataValidade;
     }
 
