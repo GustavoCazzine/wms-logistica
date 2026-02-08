@@ -2,6 +2,7 @@ package br.com.cazzine.model;
 
 import br.com.cazzine.enums.StatusPedido;
 import br.com.cazzine.exceptions.PedidoFechadoException;
+import br.com.cazzine.exceptions.PedidoVazioException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +33,11 @@ public class Pedido {
     }
 
     public void avancarStatus(){
+        if (itens.isEmpty()){
+            throw new PedidoVazioException("Não pode enviar pedido vazio!");
+        }
+
+        System.out.println("⏳ Sistema: Preparando para mudar status de " + this.status);
 
         try{
             Thread.sleep(3000);
