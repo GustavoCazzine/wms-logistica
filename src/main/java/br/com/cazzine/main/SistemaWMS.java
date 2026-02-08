@@ -1,5 +1,6 @@
 package br.com.cazzine.main;
 
+import br.com.cazzine.enums.StatusPedido;
 import br.com.cazzine.exceptions.PedidoFechadoException;
 import br.com.cazzine.exceptions.PedidoVazioException;
 import br.com.cazzine.interfaces.Tributavel;
@@ -42,13 +43,16 @@ public class SistemaWMS {
         p4.adicionarProduto(leite);
         pedidos.add(p4);
 
-        for (Pedido ped : pedidos){
-            try{
-                ped.avancarStatus();
-            } catch (PedidoVazioException e){
-                System.err.println("Erro mudar status: " + e.getMessage());
-            }
-        }
+        pedidos.stream()
+                .filter(p -> p.getStatus() != StatusPedido.ENTREGUE)
+                .forEach(ped ->{
+                    try{
+                        ped.avancarStatus();
+                    } catch (PedidoVazioException e){
+                        System.err.println("Erro no pedido " + ped.getCodigo() + ": " + e.getMessage());
+                    }
+                });
+
     }
 
 }

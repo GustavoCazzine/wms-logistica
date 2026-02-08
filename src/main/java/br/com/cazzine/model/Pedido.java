@@ -37,6 +37,11 @@ public class Pedido {
             throw new PedidoVazioException("Não pode enviar pedido vazio!");
         }
 
+        if (this.status == StatusPedido.ENTREGUE){
+            System.out.println("⚠ Pedido " + this.codigo + " já foi entregue.");
+            return;
+        }
+
         System.out.println("⏳ Sistema: Preparando para mudar status de " + this.status);
 
         try{
@@ -76,5 +81,18 @@ public class Pedido {
         System.out.printf("Valor Total do Pedido: R$ %.2f %n", total);
         System.out.println("----------------------------------");
 
+    }
+
+    //Metodos Especiais
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 }
